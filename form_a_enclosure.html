@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+body {
+  font-family: Arial;
+  margin: 0;
+}
+
+/* Navbar */
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #cf5555;
+}
+
+ul li {
+  float: left;
+}
+
+ul li a {
+  display: block;
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+ul li a:hover {
+  background-color: #a94444;
+}
+
+/* Title */
+h1 {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Center form */
+.form-container {
+  width: 300px;
+  margin: 30px auto; /* centers horizontally */
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Inputs */
+input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0 15px;
+}
+
+/* Button */
+input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #cf5555;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #a94444;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>Enclosures</h1>
+
+<div class="form-container">
+  <form action="enclosures.html"> 
+    <label for="id">ID:</label><br>
+    <input type="text" id="id" name="id"><br>
+
+    <label for="size">Size:</label><br>
+    <input type="text" id="size" name="size"><br>
+
+    <label for="habitat">Habitat Type:</label><br>
+    <input type="text" id="habitat" name="habitat"><br>
+
+    <label for="current_occupants">Current Occupants:</label><br>
+    <input type="text" id="current_occupants" name="current_occupants"><br>
+
+    <label for="maintenance_schedule">Maintenance Schedule:</label><br>
+    <input type="text" id="maintenance_schedule" name="maintenance_schedule"><br>
+
+    <label for="environmental_parameters">Environmental Parameters:</label><br>
+    <input type="text" id="environmental_parameters" name="environmental_parameters"><br>
+
+    <input type="submit" value="Submit">
+  </form>
+</div>
+
+</body>
+</html>

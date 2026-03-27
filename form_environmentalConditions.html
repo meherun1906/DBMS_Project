@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+body {
+  font-family: Arial;
+  margin: 0;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #cf5555;
+}
+
+ul li {
+  float: left;
+}
+
+ul li a {
+  display: block;
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+ul li a:hover {
+  background-color: #a94444;
+}
+h1 {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.form-container {
+  width: 300px;
+  margin: 30px auto; /* centers horizontally */
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0 15px;
+}
+
+input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #cf5555;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #a94444;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>Environmental Conditions</h1>
+
+<div class="form-container">
+  <form action="environmentalConditions.html"> 
+    
+    <label for="caretakerid">Caretaker ID:</label><br>
+    <input type="text" id="caretakerid" name="caretakerid"><br>
+
+    <label for="enclosureid">Enclosure ID:</label><br>
+    <input type="text" id="enclosureid" name="enclosureid"><br>
+
+    <label for="temperature">Temperature:</label><br>
+    <input type="text" id="temperature" name="temperature"><br>
+
+    <label for="humidity">Humidity:</label><br>
+    <input type="text" id="humidity" name="humidity"><br>
+
+    <label for="waterquality">Water Quality:</label><br>
+    <input type="text" id="waterquality" name="waterquality"><br>
+
+    <label for="date">Date:</label><br>
+    <input type="text" id="date" name="date"><br>
+
+
+    <input type="submit" value="Submit">
+  </form>
+</div>
+
+</body>
+</html>

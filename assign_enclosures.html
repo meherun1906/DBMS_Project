@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 
 body {
@@ -88,6 +89,42 @@ h1 {
   font-size: 12px;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+
+
 </style>
 </head>
 
@@ -99,13 +136,12 @@ h1 {
 
 <h1>Assign Enclosures</h1>
 
-<div class="container">
+<table>
+      <td><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search by Enclosure ID" title="Type in ID"></td>
+      <td><a href="form_c_enclosure.html" class="button">Add</a></td>
+  </table>
 
-  <div class="top-bar">
-    <a href="#" class="button">Add</a>
-  </div>
-
-  <table>
+  <table id="myTable">
   <tr>
     <th>Enclosure ID</th>
     <th>Tortoise ID</th>
@@ -121,7 +157,7 @@ h1 {
     <td>Sulcata</td>
     <td>Dry grassland</td>
     <td>2 Sulcata tortoises</td>
-    <td><button class="btn">Edit</button>
+    <td><a href="form_c_enclosure.html"><button class="btn">Edit</button></a>
     <button class="btn">Delete</button></td>
   </tr>
 
@@ -131,7 +167,7 @@ h1 {
     <td>Aldabra Giant</td>
     <td>Tropical</td>
     <td>3 Aldabra tortoises</td>
-    <td><button class="btn">Edit</button>
+    <td><a href="form_c_enclosure.html"><button class="btn">Edit</button></a>
     <button class="btn">Delete</button></td>
   </tr>
 
@@ -141,7 +177,7 @@ h1 {
     <td>Indian Star</td>
     <td>Indoor controlled</td>
     <td>1 Indian Star tortoise</td>
-    <td><button class="btn">Edit</button>
+    <td><a href="form_c_enclosure.html"><button class="btn">Edit</button></a>
     <button class="btn">Delete</button></td>
   </tr>
 
@@ -151,7 +187,7 @@ h1 {
     <td>Leopard</td>
     <td>Woodland</td>
     <td>2 Leopard tortoises</td>
-    <td><button class="btn">Edit</button>
+    <td><a href="form_c_enclosure.html"><button class="btn">Edit</button></a>
     <button class="btn">Delete</button></td>
   </tr>
 
@@ -161,13 +197,32 @@ h1 {
     <td>Galápagos Giant</td>
     <td>Grassland</td>
     <td>3 Galápagos Giant tortoises</td>
-    <td><button class="btn">Edit</button>
+    <td><a href="form_c_enclosure.html"><button class="btn">Edit</button></a>
     <button class="btn">Delete</button></td>
   </tr>
 
 </table>
 
-</div>
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
 
 </body>
 </html>

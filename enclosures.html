@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 
 body {
@@ -64,6 +65,40 @@ h1 {
   cursor: pointer;
   font-size: 12px;
 }
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
 
 </style>
 </head>
@@ -75,8 +110,9 @@ h1 {
 </ul>
 
 <h1>Enclosures</h1>
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search by ID" title="Type in a name">
 
-<table>
+<table id="myTable">
   <tr>
     <th>ID</th>
     <th>Size</th>
@@ -94,7 +130,7 @@ h1 {
     <td>2 Sulcata tortoises</td>
     <td>Cleaned weekly, inspected daily</td>
     <td>Temp 30°C, Humidity 40%, UVB lighting</td>
-    <td><button class="btn">Edit</button>
+    <td><a href="form_a_enclosure.html"><button class="btn">Edit</button></a>
     <button class="btn">Delete</button></td>
   </tr>
 
@@ -105,7 +141,7 @@ h1 {
     <td>3 Aldabra tortoises</td>
     <td>Cleaned twice weekly</td>
     <td>Temp 30°C, Humidity 60%, shaded areas</td>
-    <td><button class="btn">Edit</button>
+    <td><a href="form_a_enclosure.html"><button class="btn">Edit</button></a>
     <button class="btn">Delete</button></td>
   </tr>
 
@@ -116,7 +152,7 @@ h1 {
     <td>1 Indian Star tortoise</td>
     <td>Cleaned every 3 days</td>
     <td>Temp 30°C, Humidity 55%, UVB + heat lamp</td>
-    <td><button class="btn">Edit</button>
+    <td><a href="form_a_enclosure.html"><button class="btn">Edit</button></a>
     <button class="btn">Delete</button></td>
   </tr>
 
@@ -127,7 +163,7 @@ h1 {
     <td>2 Leopard tortoises</td>
     <td>Cleaned weekly</td>
     <td>Temp 31°C, Humidity 60%</td>
-    <td><button class="btn">Edit</button>
+    <td><a href="form_a_enclosure.html"><button class="btn">Edit</button></a>
     <button class="btn">Delete</button></td>
   </tr>
 
@@ -138,11 +174,31 @@ h1 {
     <td>3 Sulcata tortoises</td>
     <td>Cleaned weekly</td>
     <td>Temp 29°C, Humidity 45%</td>
-    <td><button class="btn">Edit</button>
+    <td><a href="form_a_enclosure.html"><button class="btn">Edit</button></a>
     <button class="btn">Delete</button></td>
   </tr>
 
 </table>
 
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
 </body>
 </html>

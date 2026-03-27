@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+body {
+  font-family: Arial;
+  margin: 0;
+}
+
+/* Navbar */
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #cf5555;
+}
+
+ul li {
+  float: left;
+}
+
+ul li a {
+  display: block;
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+ul li a:hover {
+  background-color: #a94444;
+}
+
+/* Title */
+h1 {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Center form */
+.form-container {
+  width: 300px;
+  margin: 30px auto; /* centers horizontally */
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Inputs */
+input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0 15px;
+}
+
+/* Button */
+input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #cf5555;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #a94444;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>Tortoise Records</h1>
+
+<div class="form-container">
+  <form action="a_tortoiseRecords.html"> 
+    
+    <label for="id">ID:</label><br>
+    <input type="text" id="id" name="id"><br>
+
+    <label for="species">Species:</label><br>
+    <input type="text" id="species" name="species"><br>
+
+    <label for="age">Age:</label><br>
+    <input type="text" id="age" name="age"><br>
+
+    <label for="gender">Gender:</label><br>
+    <input type="text" id="gender" name="gender"><br>
+
+    <label for="health_status">Health Status:</label><br>
+    <input type="text" id="health_status" name="health_status"><br>
+
+    <label for="history">History:</label><br>
+    <input type="text" id="history" name="history"><br>
+
+    <input type="submit" value="Submit">
+  </form>
+</div>
+
+</body>
+</html>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 
 body {
@@ -88,6 +89,41 @@ h1 {
   font-size: 12px;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+
 </style>
 </head>
 
@@ -99,13 +135,12 @@ h1 {
 
 <h1>Environmental Conditions</h1>
 
-<div class="container">
+<table>
+      <td><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search by Enclosure ID" title="Type in ID"></td>
+      <td><a href="form_environmentalConditions.html" class="button">Add</a></td>
+  </table>
 
-  <div class="top-bar">
-    <a href="#" class="button">Add</a>
-  </div>
-
-  <table>
+  <table id="myTable">
 
     <tr>
       <th>Caretaker ID</th>
@@ -125,7 +160,7 @@ h1 {
       <td>Clean</td>
       <td>2026-03-23</td>
       <td>
-        <button class="btn">Edit</button>
+        <a href="form_environmentalConditions.html"><button class="btn">Edit</button></a>
         <button class="btn">Delete</button>
       </td>
     </tr>
@@ -138,7 +173,7 @@ h1 {
       <td>Dirty</td>
       <td>2026-03-24</td>
       <td>
-        <button class="btn">Edit</button>
+        <a href="form_environmentalConditions.html"><button class="btn">Edit</button></a>
         <button class="btn">Delete</button>
       </td>
     </tr>
@@ -151,7 +186,7 @@ h1 {
       <td>Clean</td>
       <td>2026-03-24</td>
       <td>
-        <button class="btn">Edit</button>
+        <a href="form_environmentalConditions.html"><button class="btn">Edit</button></a>
         <button class="btn">Delete</button>
       </td>
     </tr>
@@ -165,14 +200,33 @@ h1 {
       <td>Dirty</td>
       <td>2026-03-22</td>
       <td>
-        <button class="btn">Edit</button>
+        <a href="form_environmentalConditions.html"><button class="btn">Edit</button></a>
         <button class="btn">Delete</button>
       </td>
     </tr>
 
   </table>
 
-</div>
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
 
 </body>
 </html>
