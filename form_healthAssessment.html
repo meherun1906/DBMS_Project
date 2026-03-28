@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+body {
+  font-family: Arial;
+  margin: 0;
+}
+
+/* Navbar */
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #cf5555;
+}
+
+ul li {
+  float: left;
+}
+
+ul li a {
+  display: block;
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+ul li a:hover {
+  background-color: #a94444;
+}
+
+/* Title */
+h1 {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Center form */
+.form-container {
+  width: 300px;
+  margin: 30px auto; /* centers horizontally */
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Inputs */
+input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0 15px;
+}
+
+/* Button */
+input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #cf5555;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #a94444;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>Health Assessment</h1>
+
+<div class="form-container">
+  <form action="health_assessment.html"> 
+    
+    <label for="assessmentid">Assessment ID:</label><br>
+    <input type="text" id="assessmentid" name="assessmentid"><br>
+
+    <label for="tortoiseid">Tortoise ID:</label><br>
+    <input type="text" id="tortoiseid" name="tortoiseid"><br>
+
+    <label for="assessmentdate">Assessment Date:</label><br>
+    <input type="text" id="assessmentdate" name="assessmentdate"><br>
+
+    <label for="healthstatus">Health status:</label><br>
+    <input type="text" id="healthstatus" name="healthstatus"><br>
+
+    <label for="treatment">Treatment:</label><br>
+    <input type="text" id="treatment" name="treatment"><br>
+
+    <label for="vaccination">Vaccination:</label><br>
+    <input type="text" id="vaccination" name="vaccination"><br>
+   
+    <label for="illness/injury">Illness/injury:</label><br>
+    <input type="text" id="illness/injury" name="illness/injury"><br>
+
+    <label for="vetnotes">Vet Notes:</label><br>
+    <input type="text" id="vetnotes" name="vetnotes"><br>
+
+    <input type="submit" value="Submit">
+  </form>
+</div>
+
+
+</body>
+</html>

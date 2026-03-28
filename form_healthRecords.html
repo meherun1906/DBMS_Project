@@ -8,6 +8,7 @@ body {
   margin: 0;
 }
 
+/* Navbar */
 ul {
   list-style-type: none;
   margin: 0;
@@ -31,27 +32,30 @@ ul li a:hover {
   background-color: #a94444;
 }
 
+/* Title */
 h1 {
   text-align: center;
   margin-top: 20px;
 }
 
+/* Center form */
 .form-container {
   width: 300px;
-  margin: 30px auto; 
+  margin: 30px auto; /* centers horizontally */
   background: #fff;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
+/* Inputs */
 input[type="text"] {
   width: 100%;
   padding: 8px;
   margin: 5px 0 15px;
 }
 
-
+/* Button */
 input[type="submit"] {
   width: 100%;
   padding: 10px;
@@ -71,31 +75,27 @@ input[type="submit"]:hover {
 
 <body>
 
-<h1>Enclosures</h1>
+<h1>Health Records</h1>
 
 <div class="form-container">
-  <form action="enclosures.html"> 
+  <form action="health_Records.html"> 
+    
     <label for="id">ID:</label><br>
     <input type="text" id="id" name="id"><br>
 
-    <label for="size">Size:</label><br>
-    <input type="text" id="size" name="size"><br>
+    <label for="tortoise">Tortoise:</label><br>
+    <input type="text" id="tortoise" name="tortoise"><br>
 
-    <label for="habitat">Habitat Type:</label><br>
-    <input type="text" id="habitat" name="habitat"><br>
+    <label for="status">Status:</label><br>
+    <input type="text" id="status" name="status"><br>
 
-    <label for="current_occupants">Current Occupants:</label><br>
-    <input type="text" id="current_occupants" name="current_occupants"><br>
-
-    <label for="maintenance_schedule">Maintenance Schedule:</label><br>
-    <input type="text" id="maintenance_schedule" name="maintenance_schedule"><br>
-
-    <label for="environmental_parameters">Environmental Parameters:</label><br>
-    <input type="text" id="environmental_parameters" name="environmental_parameters"><br>
+    <label for="date">Date:</label><br>
+    <input type="text" id="date" name="date"><br>
 
     <input type="submit" value="Submit">
   </form>
 </div>
+
 
 </body>
 </html>

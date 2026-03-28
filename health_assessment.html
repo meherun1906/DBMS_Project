@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Health Assessment</title>
+
+<style>
+body {
+  font-family: Arial;
+  margin: 0;
+  background: #f4f4f4;
+}
+
+/* NAVBAR */
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: #cf5555;
+  overflow: hidden;
+}
+
+ul li {
+  float: left;
+}
+
+ul li a {
+  display: block;
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+ul li a:hover {
+  background-color: #a94444;
+}
+
+/* CONTAINER */
+.container {
+  width: 80%;
+  margin: 30px auto;
+}
+
+/* TOP BAR */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+/* SEARCH */
+.top-bar input {
+  width: 70%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+/* BUTTONS */
+.button {
+  background-color: #cf5555;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.button:hover {
+  background-color: #a94444;
+}
+
+.btn {
+  background-color: #cf5555;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #a94444;
+}
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+th {
+  background-color: #cf5555;
+  color: white;
+  padding: 10px;
+}
+
+td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+tr:hover {
+  background-color: #f2f2f2;
+}
+
+
+h1 {
+  text-align: center;
+  color: #040404;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+
+
+</style>
+
+</head>
+
+<body>
+
+<ul>
+  <li><a href="Veterinarian.html"> Back to Dashboard</a></li>
+</ul>
+
+<div class="container">
+
+<h1>Health Assessment</h1>
+
+<table>
+      <td><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search ID" title="Type in ID"></td>
+      <td><a href="form_healthAssessment.html" class="button">Add</a></td>
+  </table>
+
+
+<table id="myTable">
+<tr>
+<th>Assessment ID </th>
+<th>Tortoise ID </th>
+<th>Assessment Date</th>
+<th>Health Status</th>
+<th>Treatment</th>
+<th>Vaccination</th>
+<th>Illness/Injury</th>
+<th>Vet Notes</th>
+<th>Action</th>
+</tr>
+
+<tr>
+<td>A0001</td>
+<td>T001</td>
+<td>2026-01-20</td>
+<td>Healthy</td>
+<td>None</td>
+<td>Vitamin A</td>
+<td>None</td>
+<td>Active and normal appetite</td>
+<td>
+    <a href="form_healthAssessment.html"><button class="btn">Edit</button></a>
+    <button class="btn">Delete</button>
+    </td>
+</tr>
+
+<tr>
+<td>A0002</td>
+<td>T002</td>
+<td>2026-01-20</td>
+<td>Recovering </td>
+<td>Antibiotics</td>
+<td>None</td>
+<td>Shell infection</td>
+<td>Improving slowly</td>
+<td>
+    <a href="form_healthAssessment.html"><button class="btn">Edit</button></a>
+    <button class="btn">Delete</button>
+    </td>
+</tr>
+
+
+<tr>
+<td>A0003</td>
+<td>T003</td>
+<td>T016</td>
+<td>2026_01_20</td>
+<td>6</td>
+<td>85</td>
+<td>66.7%</td>
+<td>Humidity issue affected eggs</td>
+<td>
+    <a href="form_healthAssessment.html"><button class="btn">Edit</button></a>
+    <button class="btn">Delete</button>
+    </td>
+</tr>
+
+</table>
+
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
+
+</body>
+</html>
