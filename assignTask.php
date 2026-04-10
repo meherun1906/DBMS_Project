@@ -1,13 +1,40 @@
+<?php
+
+
+
+
+include "./db.php";
+
+
+
+
+$sql = " SELECT TaskID, StaffID, Task, AssignedDate, TaskStatus FROM task";
+
+
+
+
+$result = $conn->query($sql);
+
+
+
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 
+
+
+
 body {
   font-family: Arial;
   margin: 0;
 }
+
+
+
 
 ul {
   list-style-type: none;
@@ -17,9 +44,15 @@ ul {
   background-color: #cf5555;
 }
 
+
+
+
 ul li {
   float: left;
 }
+
+
+
 
 ul li a {
   display: block;
@@ -28,25 +61,40 @@ ul li a {
   text-decoration: none;
 }
 
+
+
+
 ul li a:hover {
   background-color: #a94444;
 }
+
+
+
 
 .container {
   width: 80%;
   margin: 30px auto;
 }
 
+
+
+
 .top-bar {
   display: flex;
-  justify-content: flex-end; 
+  justify-content: flex-end;
   margin-bottom: 10px;
 }
+
+
+
 
 table {
   width: 100%;
   border-collapse: collapse;
 }
+
+
+
 
 th, td {
   border: 1px solid #ddd;
@@ -54,18 +102,30 @@ th, td {
   text-align: center;
 }
 
+
+
+
 th {
   background-color: #cf5555;
   color: white;
 }
 
+
+
+
 tr:hover {
   background-color: #f2f2f2;
 }
 
+
+
+
 h1 {
   text-align: center;
 }
+
+
+
 
 .button {
   background-color: #cf5555;
@@ -77,6 +137,9 @@ h1 {
   cursor: pointer;
   border-radius: 5px;
 }
+
+
+
 
 .btn {
   background-color: #cf5555;
@@ -91,6 +154,9 @@ h1 {
 * {
   box-sizing: border-box;
 }
+
+
+
 
 #myInput {
   background-image: url('/css/searchicon.png');
@@ -109,108 +175,103 @@ h1 {
   font-size: 18px;
 }
 
+
+
+
 #myTable th, #myTable td {
   text-align: left;
   padding: 12px;
 }
 
+
+
+
 #myTable tr {
   border-bottom: 1px solid #ddd;
 }
+
+
+
 
 #myTable tr.header, #myTable tr:hover {
   background-color: #f1f1f1;
 }
 
+
+
+
 </style>
 </head>
 
+
+
+
 <body>
+<table>
+    <td style="border: 0px solid #ddd;"><img src="logo.png" width="180" height="123"></td>
+    <td style="border: 0px solid #ddd;"><h1>Not So Slow & Steady</h1></td>
+</table>
+
+
+
+
 <ul>
-  <li><a href="Home.html">Home</a></li>
-  <li><a href="tortoiseRecords.html">Tortoise Records</a></li>
-  <li><a href="enclosures.html">Enclosures Details</a></li>
-  <li><a href="breedingPrograms.html">Breeding Programs</a></li>
-  <li><a href="log_FeedingTimes.html">Log Feeding Times</a></li>
-  <li><a href="health_assessment.html">Health Assessment</a></li>
-  <li><a href="environmentalConditions.html">Environmental Conditions</a></li>
-  <li><a href="assign_Task.html">Assign Task</a></li>
+  <li><a href="home.php">Home</a></li>
+  <li><a href="tortoiseRecords.php">Tortoise Records</a></li>
+  <li><a href="enclosure.php">Enclosures Details</a></li>
+  <li><a href="breedingProgram.php">Breeding Programs</a></li>
+  <li><a href="FeedingTimes.php">Log Feeding Times</a></li>
+  <li><a href="healthAssessment.php">Health Assessment</a></li>
+  <li><a href="environmentalConditions.php">Environmental Conditions</a></li>
+  <li><a href="assignTask.php">Assign Task</a></li>
 </ul>
 
-<h1>Tortoise Records</h1>
 
-  <table>
-      <td><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search ID" title="Type in ID"></td>
-      <td><a href="form_c_tortoiseRecords.html" class="button">Add</a></td>
-  </table>
-  <table id="myTable">
-  <tr>
-    <th>ID</th>
-    <th>Species</th>
-    <th>Age</th>
-    <th>Gender</th>
-    <th>Health Status</th>
-    <th>History</th>
+
+
+<h2>Assign Task</h2>
+<table style="border: 0px solid #ddd;">
+    <td style="border: 0px solid #ddd;"><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search ID" title="Type ID"></td>
+    <td style="border: 0px solid #ddd;"><a href="assignTask_Create.php" class="button">Add</a></td>
+</table>
+
+
+
+
+<table id="myTable">
+  <tr class="header">
+    <th>Task ID</th>
+    <th>Staff ID</th>
+    <th>Task</th>
+    <th>Assigned Date</th>
+    <th>Task Status</th>
     <th>Action</th>
   </tr>
 
-  <tr>
-    <td>T1</td>
-    <td>Aldabra Giant</td>
-    <td>20</td>
-    <td>Female</td>
-    <td>Minor injury</td>
-    <td>Wound treated</td>
-    <td><a href="form_c_tortoiseRecords.html"><button class="btn">Edit</button></a>
-    <button class="btn">Delete</button></td>
-  </tr>
 
-  <tr>
-    <td>T2</td>
-    <td>Galápagos Giant</td>
-    <td>25</td>
-    <td>Female</td>
-    <td>Healthy</td>
-    <td>Regular diet, routine checkup</td>
-    <td><a href="form_c_tortoiseRecords.html"><button class="btn">Edit</button></a>
-    <button class="btn">Delete</button></td>
-  </tr>
 
-  <tr>
-    <td>T3</td>
-    <td>Indian Star</td>
-    <td>15</td>
-    <td>Female</td>
-    <td>Recovered dehydration</td>
-    <td>Increased hydration, monitored</td>
-    <td><a href="form_c_tortoiseRecords.html"><button class="btn">Edit</button></a>
-    <button class="btn">Delete</button></td>
-  </tr>
 
+  <?php
+    if ($result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
+  ?>
   <tr>
-    <td>T4</td>
-    <td>Leopard</td>
-    <td>36</td>
-    <td>Female</td>
-    <td>Overweight</td>
-    <td>Diet controlled</td>
-    <td><a href="form_c_tortoiseRecords.html"><button class="btn">Edit</button></a>
-    <button class="btn">Delete</button></td>
+    <td><?php echo $row['TaskID']; ?></td>
+    <td><?php echo $row['StaffID']; ?></td>
+    <td><?php echo $row['Task']; ?></td>
+    <td><?php echo $row['AssignedDate']; ?></td>
+    <td><?php echo $row['TaskStatus']; ?></td>
+    <td>
+      <a href="assignTask_Update.php?TaskID=<?php echo $row['TaskID']; ?>" class="button">Edit</a>
+      <a href="assignTask_Delete.php?TaskID=<?php echo $row['TaskID']; ?>" class="button" style="background-color: #cf5555;">Delete</a>
+    </td>
   </tr>
-
-  <tr>
-    <td>T5</td>
-    <td>Sulcata</td>
-    <td>24</td>
-    <td>Female</td>
-    <td>Healthy</td>
-    <td>Balanced diet, UVB exposure</td>
-    <td><a href="form_c_tortoiseRecords.html"><button class="btn">Edit</button></a>
-    <button class="btn">Delete</button></td>
-  </tr>
-
+  <?php
+      }
+    }
+    $conn->close();
+  ?>
 </table>
-</div>
 <script>
 function myFunction() {
   var input, filter, table, tr, td, i, txtValue;
@@ -227,10 +288,13 @@ function myFunction() {
       } else {
         tr[i].style.display = "none";
       }
-    }       
+    }      
   }
 }
 </script>
+
+
+
 
 </body>
 </html>

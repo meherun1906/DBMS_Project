@@ -1,3 +1,12 @@
+<?php 
+
+include "./db.php";
+
+$sql = " SELECT FeedingID, t_ID, FoodType, FeedingTime, Quantity, DietNotes, Stock FROM logfeedingtimes";
+
+$result = $conn->query($sql);
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,7 +80,7 @@ h1 {
   background-color: #cf5555;
   border: none;
   color: white;
-  padding: 10px 20px;
+  padding: 15px 25px;
   text-decoration: none;
   font-size: 14px;
   cursor: pointer;
@@ -102,7 +111,6 @@ h1 {
   border: 1px solid #ddd;
   margin-bottom: 12px;
 }
-
 #myTable {
   border-collapse: collapse;
   width: 100%;
@@ -127,26 +135,31 @@ h1 {
 </head>
 
 <body>
-<ul>
-  <li><a href="Home.html">Home</a></li>
-  <li><a href="tortoiseRecords.html">Tortoise Records</a></li>
-  <li><a href="enclosures.html">Enclosures Details</a></li>
-  <li><a href="breedingPrograms.html">Breeding Programs</a></li>
-  <li><a href="log_FeedingTimes.html">Log Feeding Times</a></li>
-  <li><a href="health_assessment.html">Health Assessment</a></li>
-  <li><a href="environmentalConditions.html">Environmental Conditions</a></li>
-  <li><a href="assign_Task.html">Assign Task</a></li>
-</ul>
-<h1>Log Feeding Times</h1>
-
 <table>
-      <td><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search ID" title="Type in ID"></td>
-      <td><a href="form_logFeedingTimes.html" class="button">Add</a></td>
-  </table>
+    <td style="border: 0px solid #ddd;"><img src="logo.png" width="180" height="123"></td>
+    <td style="border: 0px solid #ddd;"><h1>Not So Slow & Steady</h1></td>
+</table>
 
-  <table id="myTable">
-    <tr>
-      <th>Feeding ID</th>
+<ul>
+  <li><a href="home.php">Home</a></li>
+  <li><a href="tortoiseRecords.php">Tortoise Records</a></li>
+  <li><a href="enclosure.php">Enclosures Details</a></li>
+  <li><a href="breedingProgram.php">Breeding Programs</a></li>
+  <li><a href="FeedingTimes.php">Log Feeding Times</a></li>
+  <li><a href="healthAssessment.php">Health Assessment</a></li>
+  <li><a href="environmentalConditions.php">Environmental Conditions</a></li>
+  <li><a href="assignTask.php">Assign Task</a></li>
+</ul>
+
+<h2>Log Feeding Times</h2>
+<table style="border: 0px solid #ddd;">
+    <td style="border: 0px solid #ddd;"><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search by tortoise ID" title="Type ID"></td>
+    <td style="border: 0px solid #ddd;"><a href="feedingTimes_Create.php" class="button">Add</a></td>
+</table>
+
+<table id="myTable">
+  <tr class="header">
+    <th>Feeding ID</th>
       <th>Tortoise ID</th>
       <th>Food Type</th>
       <th>Feeding time</th>
@@ -154,60 +167,31 @@ h1 {
       <th>Diet Notes</th>
       <th>Stock</th>
       <th>Action</th>
-    </tr>
+  </tr>
 
-    <tr>
-      <td>F001</td>
-      <td>T1</td>
-      <td>Leafy Green</td>
-      <td>08:00 AM</td>
-      <td>200g</td>
-      <td>High fiber diet</td>
-      <td>5g</td>
-      
-      <td><a href="form_logFeedingTimes.html"><button class="btn">Edit</button></a>
-      <button class="btn">Delete</button></td>
-    </tr>
-
-    <tr>
-      <td>F002</td>
-      <td>T2</td>
-      <td>Vegetables</td>
-      <td>09:30 AM</td>
-      <td>150g</td>
-      <td>Low protein required</td>
-      <td>3g</td>
-      <td><a href="form_logFeedingTimes.html"><button class="btn">Edit</button></a>
-      <button class="btn">Delete</button></td>
-    </tr>
-
-    <tr>
-      <td>F003</td>
-      <td>T4</td>
-      <td>Fruits</td>
-      <td>08:30 AM</td>
-      <td>100g</td>
-      <td>Occasional Fruit Intake</td>
-      <td>2.5kg</td>
-      <td><a href="form_logFeedingTimes.html"><button class="btn">Edit</button></a>
-      <button class="btn">Delete</button></td>
-    </tr>
-
-
-    <tr>
-      <td>F004</td>
-      <td>T3</td>
-      <td>Leafy Greens</td>
-      <td>07:45 AM</td>
-      <td>180g</td>
-      <td>Reduce Quantity</td>
-      <td>4.8kg</td>
-      <td><a href="form_logFeedingTimes.html"><button class="btn">Edit</button></a>
-      <button class="btn">Delete</button></td>
-    </tr>
-
-  </table>
-
+  <?php
+    if ($result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
+  ?>
+  <tr>                                          
+    <td><?php echo $row['FeedingID']; ?></td>
+    <td><?php echo $row['t_ID']; ?></td>
+    <td><?php echo $row['FoodType']; ?></td>
+    <td><?php echo $row['FeedingTime']; ?></td>
+    <td><?php echo $row['Quantity']; ?></td>
+    <td><?php echo $row['DietNotes']; ?></td>
+    <td><?php echo $row['Stock']; ?></td>
+    <td>
+      <a href="feedingTimes_Update.php?FeedingID=<?php echo $row['FeedingID']; ?>" class="button">Edit</a>
+      <a href="feedingTimes_Delete.php?FeedingID=<?php echo $row['FeedingID']; ?>" class="button" style="background-color: #cf5555;">Delete</a>
+    </td>
+  </tr>
+  <?php
+      }
+    }
+    $conn->close();
+  ?>
+</table>
 <script>
 function myFunction() {
   var input, filter, table, tr, td, i, txtValue;
@@ -216,7 +200,7 @@ function myFunction() {
   table = document.getElementById("myTable");
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
+    td = tr[i].getElementsByTagName("td")[1];
     if (td) {
       txtValue = td.textContent || td.innerText;
       if (txtValue.toUpperCase().indexOf(filter) > -1) {

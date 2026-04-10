@@ -1,3 +1,12 @@
+<?php 
+
+include "./db.php";
+
+$sql = " SELECT RecordID, EncloserID, Temperature, Humidity, WaterQuality, Record_Date FROM `environmentalconditions`";
+
+$result = $conn->query($sql);
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,7 +80,7 @@ h1 {
   background-color: #cf5555;
   border: none;
   color: white;
-  padding: 10px 20px;
+  padding: 15px 25px;
   text-decoration: none;
   font-size: 14px;
   cursor: pointer;
@@ -88,7 +97,6 @@ h1 {
   cursor: pointer;
   font-size: 12px;
 }
-
 * {
   box-sizing: border-box;
 }
@@ -103,7 +111,6 @@ h1 {
   border: 1px solid #ddd;
   margin-bottom: 12px;
 }
-
 #myTable {
   border-collapse: collapse;
   width: 100%;
@@ -128,87 +135,61 @@ h1 {
 </head>
 
 <body>
+<table>
+    <td style="border: 0px solid #ddd;"><img src="logo.png" width="180" height="123"></td>
+    <td style="border: 0px solid #ddd;"><h1>Not So Slow & Steady</h1></td>
+</table>
 
 <ul>
-  <li><a href="Home.html">Home</a></li>
-  <li><a href="tortoiseRecords.html">Tortoise Records</a></li>
-  <li><a href="enclosures.html">Enclosures Details</a></li>
-  <li><a href="breedingPrograms.html">Breeding Programs</a></li>
-  <li><a href="log_FeedingTimes.html">Log Feeding Times</a></li>
-  <li><a href="health_assessment.html">Health Assessment</a></li>
-  <li><a href="environmentalConditions.html">Environmental Conditions</a></li>
-  <li><a href="assign_Task.html">Assign Task</a></li>
+  <li><a href="home.php">Home</a></li>
+  <li><a href="tortoiseRecords.php">Tortoise Records</a></li>
+  <li><a href="enclosure.php">Enclosures Details</a></li>
+  <li><a href="breedingProgram.php">Breeding Programs</a></li>
+  <li><a href="FeedingTimes.php">Log Feeding Times</a></li>
+  <li><a href="healthAssessment.php">Health Assessment</a></li>
+  <li><a href="environmentalConditions.php">Environmental Conditions</a></li>
+  <li><a href="assignTask.php">Assign Task</a></li>
 </ul>
 
-<h1>Assign Task</h1>
+<h2>Environmental Conditions</h2>
+<table style="border: 0px solid #ddd;">
+    <td style="border: 0px solid #ddd;"><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search by Enclosure ID" title="Type ID"></td>
+    <td style="border: 0px solid #ddd;"><a href="environmentalConditions_Create.php" class="button">Add</a></td>
+</table>
 
-<table>
-      <td><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search by ID" title="Type in ID"></td>
-      <td><a href="form_assignTask.html" class="button">Add</a></td>
-  </table>
-
-  <table id="myTable">
-
-    <tr>
-      <th>Task ID</th>
-      <th>Staff ID</th>
-      <th>Task</th>
-      <th>Assigned date</th>
-      <th>Task Status</th>
+<table id="myTable">
+  <tr class="header">
+    <th>Record ID</th>
+    <th>Enclosure ID</th>
+      <th>Temperature</th>
+      <th>Humidity</th>
+      <th>Water Quality</th>
+      <th>Record Date</th>
       <th>Action</th>
-    </tr>
+  </tr>
 
-    <tr>
-      <td>Task1</td>
-      <td>S005</td>
-      <td>Assign enclosures to new tortoises</td>
-      <td>2026-03-24</td>
-      <td>Completed</td>
-      <td>
-        <a href="form_assignTask.html"><button class="btn">Edit</button></a>
-        <button class="btn">Delete</button>
-      </td>
-    </tr>
-
-    <tr>
-      <td>Task4</td>
-      <td>S001</td>
-      <td>Update new tortoise records</td>
-      <td>2026-03-24</td>
-      <td>Pending</td>
-      <td>
-        <a href="form_assignTask.html"><button class="btn">Edit</button></a>
-        <button class="btn">Delete</button>
-      </td>
-    </tr>
-
-    <tr>
-      <td>Task6</td>
-      <td>S002</td>
-      <td>Assess new tortoises</td>
-      <td>2026-03-25</td>
-      <td>Completed</td>
-      <td>
-        <a href="form_assignTask.html"><button class="btn">Edit</button></a>
-        <button class="btn">Delete</button>
-      </td>
-    </tr>
-
-
-    <tr>
-      <td>Task8</td>
-      <td>S004</td>
-      <td>Update breeding programs</td>
-      <td>2026-03-26</td>
-      <td>Completed</td>
-      <td>
-        <a href="form_assignTask.html"><button class="btn">Edit</button></a>
-        <button class="btn">Delete</button>
-      </td>
-    </tr>
-
-  </table>
-
+  <?php
+    if ($result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) { 
+  ?>
+  <tr>
+    <td><?php echo $row['RecordID']; ?></td>
+    <td><?php echo $row['EncloserID']; ?></td>
+    <td><?php echo $row['Temperature']; ?></td>
+    <td><?php echo $row['Humidity']; ?></td>
+    <td><?php echo $row['WaterQuality']; ?></td>
+    <td><?php echo $row['Record_Date']; ?></td>
+    <td>
+      <a href="environmentalConditions_Update.php?RecordID=<?php echo $row['RecordID']; ?>" class="button">Edit</a>
+      <a href="environmentalConditions_Delete.php?RecordID=<?php echo $row['RecordID']; ?>" class="button" style="background-color: #cf5555;">Delete</a>
+    </td>
+  </tr>
+  <?php
+      }
+    }
+    $conn->close();
+  ?>
+</table>
 <script>
 function myFunction() {
   var input, filter, table, tr, td, i, txtValue;
@@ -217,7 +198,7 @@ function myFunction() {
   table = document.getElementById("myTable");
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
+    td = tr[i].getElementsByTagName("td")[1];
     if (td) {
       txtValue = td.textContent || td.innerText;
       if (txtValue.toUpperCase().indexOf(filter) > -1) {
