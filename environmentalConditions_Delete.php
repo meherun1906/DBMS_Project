@@ -2,11 +2,10 @@
 
 include "db.php"; 
 
-if (isset($_GET['RecordID'])) {
+if (isset($_GET['recordID'])) {
+    $recordID = $_GET['recordID'];
 
-    $RecordID = $_GET['RecordID'];
-
-    $sql = "DELETE FROM `environmentalconditions` WHERE `RecordID`='$RecordID'";
+    $sql = "DELETE FROM `econditions` WHERE `recordID`='$recordID'";
 
      $result = $conn->query($sql);
 

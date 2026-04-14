@@ -2,16 +2,15 @@
 
 include "db.php";
 
-if (isset($_POST['update'])) {   
+if (isset($_POST['update'])) {  
+    $recordID = $_POST['recordID'];
+    $enclosureID = $_POST['enclosureID'];
+    $temperature = $_POST['temperature'];
+    $humidity = $_POST['humidity'];
+    $waterQuality = $_POST['waterQuality'];
+    $record_Date = $_POST['record_Date'];
 
-    $RecordID = $_POST['RecordID'];
-    $EncloserID = $_POST['EncloserID'];
-    $Temperature = $_POST['Temperature'];
-    $Humidity = $_POST['Humidity'];
-    $WaterQuality = $_POST['WaterQuality'];
-    $Record_Date = $_POST['Record_Date'];
-
-    $sql = "UPDATE `environmentalconditions` SET `EncloserID`='$EncloserID',`Temperature`='$Temperature',`Humidity`='$Humidity',`WaterQuality`='$WaterQuality', `Record_Date`='$Record_Date'  WHERE `RecordID`='$RecordID'"; 
+    $sql = "UPDATE `econditions` SET `enclosureID`='$enclosureID',`temperature`='$temperature',`humidity`='$humidity',`waterQuality`='$waterQuality',`record_Date`='$record_Date' WHERE `recordID`='$recordID'"; 
 
     $result = $conn->query($sql); 
 
@@ -29,24 +28,24 @@ if (isset($_POST['update'])) {
 
     }
 
-} 
-if (isset($_GET['RecordID'])) {
+}    
+if (isset($_GET['recordID'])) {  
 
-    $RecordID = $_GET['RecordID']; 
+    $recordID = $_GET['recordID']; 
 
-    $sql = "SELECT * FROM `environmentalconditions` WHERE `RecordID`='$RecordID'";
+    $sql = "SELECT * FROM `econditions` WHERE `recordID`='$recordID'";
 
     $result = $conn->query($sql); 
 
-    if ($result->num_rows > 0) {       
-        while ($row = $result->fetch_assoc()) {
-            $RecordID = $row['RecordID'];
-            $EncloserID = $row['EncloserID'];
-            $Temperature = $row['Temperature'];
-            $Humidity = $row['Humidity'];
-            $WaterQuality = $row['WaterQuality'];
-            $Record_Date = $row['Record_Date'];
+    if ($result->num_rows > 0) {        
 
+        while ($row = $result->fetch_assoc()) {
+            $recordID = $row['recordID'];
+            $enclosureID = $row['enclosureID'];
+            $temperature = $row['temperature'];
+            $humidity = $row['humidity'];
+            $waterQuality = $row['waterQuality'];
+            $record_Date = $row['record_Date'];
          } 
 
     ?>
@@ -59,37 +58,37 @@ if (isset($_GET['RecordID'])) {
     <body>
 
     <div class="container">
-
         <form action="" method="post">
 
-          <fieldset>
-
-        <input type="hidden" name="RecordID" value="<?php echo $RecordID; ?>">
+          <fieldset>   
+            <input type="hidden" name="recordID" value="<?php echo $recordID; ?>">
 
         <div class="form-group">
-        <label for="EncloserID">Encloser ID:</label>
-        <input type="text" class="form-control" name="EncloserID" id="EncloserID">
+        <label for="enclosureID">Enclosure ID:</label>
+        <input type="text" class="form-control" name="enclosureID" id="enclosureID">
       </div>
 
       <div class="form-group">
-        <label for="Temperature">Temperature:</label>
-        <input type="text" class="form-control" name="Temperature" id="Temperature">
+        <label for="temperature">Temperature:</label>
+        <input type="text" class="form-control" name="temperature" id="temperature">
       </div>
 
       <div class="form-group">
-        <label for="Humidity">Humidity:</label>
-        <input type="text" class="form-control" name="Humidity" id="Humidity">
+        <label for="humidity">Humidity:</label>
+        <input type="text" class="form-control" name="humidity" id="humidity">
       </div>
 
       <div class="form-group">
-        <label for="WaterQuality">Water Quality:</label>
-        <input type="text" class="form-control" name="WaterQuality" id="WaterQuality">
+        <label for="waterQuality">Water Quality:</label>
+        <input type="text" class="form-control" name="waterQuality" id="waterQuality">
       </div>
 
       <div class="form-group">
-        <label for="Record_Date">Record Date:</label>
-        <input type="date" class="form-control" name="Record_Date" id="Record_Date">
+        <label for="record_Date">Record Date:</label>
+        <input type="date" class="form-control" name="record_Date" id="record_Date">
       </div>
+
+      
       <input type="submit" class="btn btn-primary" value="Update" name="update">
 
           </fieldset>

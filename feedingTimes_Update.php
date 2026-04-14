@@ -2,17 +2,16 @@
 
 include "db.php";
 
-if (isset($_POST['update'])) {
-
-    $FeedingID = $_POST['FeedingID'];
+if (isset($_POST['update'])) {  
+    $f_ID = $_POST['f_ID'];
     $t_ID = $_POST['t_ID'];
-    $FoodType = $_POST['FoodType'];
-    $FeedingTime = $_POST['FeedingTime'];
-    $Quantity = $_POST['Quantity'];
-    $DietNotes = $_POST['DietNotes'];
-    $Stock = $_POST['Stock'];
+    $foodType = $_POST['foodType'];
+    $feedingTime = $_POST['feedingTime'];
+    $quantity = $_POST['quantity'];
+    $dietNotes = $_POST['dietNotes'];
+    $stock = $_POST['stock'];
 
-    $sql = "UPDATE `logfeedingtimes` SET `t_ID`='$t_ID',`FoodType`='$FoodType',`FeedingTime`='$FeedingTime',`Quantity`='$Quantity',`DietNotes`='$DietNotes', `Stock`='$Stock'  WHERE `FeedingID`='$FeedingID'"; 
+    $sql = "UPDATE `feedingtimes` SET `t_ID`='$t_ID',`foodType`='$foodType',`feedingTime`='$feedingTime',`quantity`='$quantity',`dietNotes`='$dietNotes',`stock`='$stock' WHERE `f_ID`='$f_ID'"; 
 
     $result = $conn->query($sql); 
 
@@ -30,25 +29,25 @@ if (isset($_POST['update'])) {
 
     }
 
-} 
-if (isset($_GET['FeedingID'])) {
+}    
+if (isset($_GET['f_ID'])) {   
 
-    $FeedingID = $_GET['FeedingID']; 
+    $f_ID = $_GET['f_ID']; 
 
-    $sql = "SELECT * FROM `logfeedingtimes` WHERE `FeedingID`='$FeedingID'";
+    $sql = "SELECT * FROM `feedingtimes` WHERE `f_ID`='$f_ID'";
 
     $result = $conn->query($sql); 
 
-    if ($result->num_rows > 0) {         
+    if ($result->num_rows > 0) {        
 
         while ($row = $result->fetch_assoc()) {
-            $FeedingID = $row['FeedingID'];
+            $f_ID = $row['f_ID'];
             $t_ID = $row['t_ID'];
-            $FoodType = $row['FoodType'];
-            $FeedingTime = $row['FeedingTime'];
-            $Quantity = $row['Quantity'];
-            $DietNotes = $row['DietNotes'];
-            $Stock = $row['Stock'];
+            $foodType = $row['foodType'];
+            $feedingTime = $row['feedingTime'];
+            $quantity = $row['quantity'];
+            $dietNotes = $row['dietNotes'];
+            $stock = $row['stock'];
          } 
 
     ?>
@@ -61,14 +60,10 @@ if (isset($_GET['FeedingID'])) {
     <body>
 
     <div class="container">
-
         <form action="" method="post">
 
-          <fieldset>
-
-            <legend>Tortoise Records:</legend>
-
-            <input type="hidden" name="t_ID" value="<?php echo $t_ID; ?>">
+          <fieldset>   
+            <input type="hidden" name="f_ID" value="<?php echo $f_ID; ?>">
 
         <div class="form-group">
         <label for="t_ID">Tortoise ID:</label>
@@ -76,29 +71,30 @@ if (isset($_GET['FeedingID'])) {
       </div>
 
       <div class="form-group">
-        <label for="FoodType">Food Type:</label>
-        <input type="text" class="form-control" name="FoodType" id="FoodType">
+        <label for="foodType">Food Type:</label>
+        <input type="text" class="form-control" name="foodType" id="foodType">
       </div>
 
       <div class="form-group">
-        <label for="FeedingTime">Feeding Time:</label>
-        <input type="time" class="form-control" name="FeedingTime" id="FeedingTime">
+        <label for="feedingTime">Feeding Time:</label>
+        <input type="time" class="form-control" name="feedingTime" id="feedingTime">
       </div>
 
       <div class="form-group">
-        <label for="Quantity">Quantity:</label>
-        <input type="text" class="form-control" name="Quantity" id="Quantity">
+        <label for="quantity">Quantity:</label>
+        <input type="text" class="form-control" name="quantity" id="quantity">
       </div>
 
       <div class="form-group">
-        <label for="DietNotes">Diet Notes:</label>
-        <input type="text" class="form-control" name="DietNotes" id="DietNotes">
+        <label for="dietNotes">Diet Notes:</label>
+        <input type="text" class="form-control" name="dietNotes" id="dietNotes">
       </div>
 
       <div class="form-group">
-        <label for="Stock">Stock:</label>
-        <input type="text" class="form-control" name="Stock" id="Stock">
+        <label for="stock">Stock:</label>
+        <input type="text" class="form-control" name="stock" id="stock">
       </div>
+
       
       <input type="submit" class="btn btn-primary" value="Update" name="update">
 

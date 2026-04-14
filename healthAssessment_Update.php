@@ -1,119 +1,57 @@
-<?php
-
-
-
+<?php 
 
 include "db.php";
-
-
-
-
-if (isset($_POST['update'])) {
-
-
-
-
-    $AssessmentID = $_POST['AssessmentID'];
+if (isset($_POST['update'])) {  
+    $assessmentID = $_POST['assessmentID'];
     $t_ID = $_POST['t_ID'];
-    $AssessmentDate = $_POST['AssessmentDate'];
-    $HealthStatus = $_POST['HealthStatus'];
-    $Treatment = $_POST['Treatment'];
-    $Vaccination = $_POST['Vaccination'];
-    $Illness_Injury = $_POST['Illness_Injury'];
-    $CarePlanning = $_POST['CarePlanning'];
+    $assessmentDate = $_POST['assessmentDate'];
+    $healthStatus = $_POST['healthStatus'];
+    $Ttreatment = $_POST['Ttreatment'];
+    $vaccination = $_POST['vaccination'];
+    $illness_Injury = $_POST['illness_Injury'];
+    $carePlanning = $_POST['carePlanning'];
 
+    $sql = "UPDATE `h_assessment` SET `t_ID`='$t_ID',`assessmentDate`='$assessmentDate',`healthStatus`='$healthStatus',`Ttreatment`='$Ttreatment',`vaccination`='$vaccination', `illness_Injury`='$illness_Injury', `carePlanning`='$carePlanning' WHERE `assessmentID`='$assessmentID'"; 
 
-
-
-    $sql = "UPDATE `healthassessment` SET `t_ID`='$t_ID',`AssessmentDate`='$AssessmentDate',`HealthStatus`='$',`Treatment`='$Treatment', `Vaccination`='$Vaccination', `Illness/Injury`='$Illness/Injury' , `CarePlanning`='$CarePlanning'   WHERE `AssessmentID`='$AssessmentID'";
-
-
-
-
-    $result = $conn->query($sql);
-
-
-
+    $result = $conn->query($sql); 
 
     if ($result == TRUE) {
-
-
-
 
         echo '<div class="alert alert-success" role="alert">';
         echo 'Record updated successfully.';
         echo '</div>';
         echo "<script>console.log('Record updated successfully.');</script>";
-        header( "refresh:2; url=./healthAssessment.php" );
-
-
-
+        header( "refresh:2; url=./healthAssessment.php" ); 
 
     }else{
 
-
-
-
         echo "Error:" . $sql . "<br>" . $conn->error;
-
-
-
 
     }
 
+}    
+if (isset($_GET['assessmentID'])) {   
 
+    $assessmentID = $_GET['assessmentID']; 
 
+    $sql = "SELECT * FROM `h_assessment` WHERE `assessmentID`='$assessmentID'";
 
-}
-if (isset($_GET['AssessmentID'])) {
-
-
-
-
-    $AssessmentID = $_GET['AssessmentID'];
-
-
-
-
-    $sql = "SELECT * FROM `healthassessment` WHERE `AssessmentID`='$AssessmentID'";
-
-
-
-
-    $result = $conn->query($sql);
-
-
-
+    $result = $conn->query($sql); 
 
     if ($result->num_rows > 0) {        
 
-
-
-
         while ($row = $result->fetch_assoc()) {
-            $AssessmentID = $row['AssessmentID'];
+            $assessmentID = $row['assessmentID'];
             $t_ID = $row['t_ID'];
-            $AssessmentDate = $row['AssessmentDate'];
-            $HealthStatus = $row['HealthStatus'];
-            $Treatment = $row['Treatment'];
-            $Vaccination = $row['Vaccination'];
-            $Illness_Injury = $row['Illness_Injury'];
-            $CarePlanning = $row['CarePlanning'];
-
-
-
-
-
-
-         }
-
-
-
+            $assessmentDate = $row['assessmentDate'];
+            $healthStatus = $row['healthStatus'];
+            $Ttreatment = $row['Ttreatment'];
+            $vaccination = $row['vaccination'];
+            $illness_Injury = $row['illness_Injury'];
+            $carePlanning = $row['carePlanning'];
+         } 
 
     ?>
-
-
-
 
     <html>
     <head>
@@ -122,121 +60,65 @@ if (isset($_GET['AssessmentID'])) {
     </head>
     <body>
 
-
-
-
     <div class="container">
-
-
-
-
         <form action="" method="post">
 
+          <fieldset>   
+            <input type="hidden" name="assessmentID" value="<?php echo $assessmentID; ?>">
 
-
-
-          <fieldset>
-            <input type="hidden" name="AssessmentID" value="<?php echo $AssessmentID; ?>">
-
-
-       <div class="form-group">
+        <div class="form-group">
         <label for="t_ID">Tortoise ID:</label>
         <input type="text" class="form-control" name="t_ID" id="t_ID">
       </div>
 
-
       <div class="form-group">
-        <label for="AssessmentDate">Assessment Date:</label>
-        <input type="text" class="form-control" name="AssessmentDate" id="AssessmentDate">
+        <label for="assessmentDate">Assessment Date:</label>
+        <input type="date" class="form-control" name="assessmentDate" id="assessmentDate">
       </div>
 
-
-
-
       <div class="form-group">
-        <label for="HealthStatus">Health Status:</label>
-        <input type="text" class="form-control" name="HealthStatus" id="HealthStatus">
+        <label for="healthStatus">Health Status:</label>
+        <input type="text" class="form-control" name="healthStatus" id="healthStatus">
       </div>
 
-
-
-
       <div class="form-group">
-        <label for="Treatment">Treatment:</label>
-        <input type="text" class="form-control" name="Treatment" id="Treatment">
+        <label for="Ttreatment">Treatment:</label>
+        <input type="text" class="form-control" name="Ttreatment" id="Ttreatment">
       </div>
 
-
-
-
       <div class="form-group">
-        <label for="Vaccination">Vaccination:</label>
-        <input type="text" class="form-control" name="Vaccination" id="Vaccination">
+        <label for="vaccination">Vaccination:</label>
+        <input type="text" class="form-control" name="vaccination" id="vaccination">
       </div>
 
-
-
-
       <div class="form-group">
-        <label for="Illness_Injury">Illness/Injury:</label>
-        <input type="text" class="form-control" name="Illness_Injury" id="Illness_Injury">
+        <label for="illness_Injury">Illness_Injury:</label>
+        <input type="text" class="form-control" name="illness_Injury" id="illness_Injury">
       </div>
 
-
-
-
-
-
       <div class="form-group">
-        <label for="CarePlanning">Care Planning:</label>
-        <input type="text" class="form-control" name="CarePlanning" id="CarePlanning">
+        <label for="carePlanning">Care Planning:</label>
+        <input type="text" class="form-control" name="carePlanning" id="carePlanning">
       </div>
-     
+
       <input type="submit" class="btn btn-primary" value="Update" name="update">
-
-
-
 
           </fieldset>
 
-
-
-
-        </form>
+        </form> 
     </div>
 
-
-
-
     </body>
-    </html>
-
-
-
+    </html> 
 
     <?php
 
-
-
-
-    } else{
-
-
-
+    } else{ 
 
         header('Location: healthAssessment.php');
 
-
-
-
-    }
-
-
-
+    } 
 
 }
-
-
-
 
 ?>

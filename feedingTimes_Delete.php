@@ -2,11 +2,11 @@
 
 include "db.php"; 
 
-if (isset($_GET['FeedingID'])) {
+if (isset($_GET['f_ID'])) {
 
-    $FeedingID = $_GET['FeedingID'];
+    $f_ID = $_GET['f_ID'];
 
-    $sql = "DELETE FROM `logfeedingtimes` WHERE `FeedingID`='$FeedingID'";
+    $sql = "DELETE FROM `feedingtimes` WHERE `f_ID`='$f_ID'";
 
      $result = $conn->query($sql);
 

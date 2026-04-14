@@ -1,8 +1,7 @@
 <?php 
 
 include "./db.php";
-
-$sql = " SELECT FeedingID, t_ID, FoodType, FeedingTime, Quantity, DietNotes, Stock FROM logfeedingtimes";
+$sql = " SELECT f_ID, t_ID, foodType, feedingTime, quantity, dietNotes, stock  FROM feedingtimes";
 
 $result = $conn->query($sql);
 
@@ -153,37 +152,37 @@ h1 {
 
 <h2>Log Feeding Times</h2>
 <table style="border: 0px solid #ddd;">
-    <td style="border: 0px solid #ddd;"><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search by tortoise ID" title="Type ID"></td>
+    <td style="border: 0px solid #ddd;"><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search Tortoise ID" title="Type ID"></td>
     <td style="border: 0px solid #ddd;"><a href="feedingTimes_Create.php" class="button">Add</a></td>
 </table>
 
-<table id="myTable">
+<table id="myTable">    
   <tr class="header">
     <th>Feeding ID</th>
-      <th>Tortoise ID</th>
-      <th>Food Type</th>
-      <th>Feeding time</th>
-      <th>Quantity</th>
-      <th>Diet Notes</th>
-      <th>Stock</th>
-      <th>Action</th>
+    <th>Tortoise ID</th>
+    <th>Food Type</th>
+    <th>Feeding Time</th>
+    <th>Quantity</th>
+    <th>Diet Notes</th>
+    <th>Stock</th>
+    <th>Action</th>
   </tr>
 
   <?php
     if ($result->num_rows > 0) {
-      while ($row = $result->fetch_assoc()) {
+      while ($row = $result->fetch_assoc()) {   
   ?>
-  <tr>                                          
-    <td><?php echo $row['FeedingID']; ?></td>
+  <tr>         
+    <td><?php echo $row['f_ID']; ?></td>
     <td><?php echo $row['t_ID']; ?></td>
-    <td><?php echo $row['FoodType']; ?></td>
-    <td><?php echo $row['FeedingTime']; ?></td>
-    <td><?php echo $row['Quantity']; ?></td>
-    <td><?php echo $row['DietNotes']; ?></td>
-    <td><?php echo $row['Stock']; ?></td>
+    <td><?php echo $row['foodType']; ?></td>
+    <td><?php echo $row['feedingTime']; ?></td>
+    <td><?php echo $row['quantity']; ?></td>
+    <td><?php echo $row['dietNotes']; ?></td>
+    <td><?php echo $row['stock']; ?></td>
     <td>
-      <a href="feedingTimes_Update.php?FeedingID=<?php echo $row['FeedingID']; ?>" class="button">Edit</a>
-      <a href="feedingTimes_Delete.php?FeedingID=<?php echo $row['FeedingID']; ?>" class="button" style="background-color: #cf5555;">Delete</a>
+      <a href="feedingTimes_Update.php?f_ID=<?php echo $row['f_ID']; ?>" class="button">Edit</a>
+      <a href="feedingTimes_Delete.php?f_ID=<?php echo $row['f_ID']; ?>" class="button" style="background-color: #cf5555;">Delete</a>
     </td>
   </tr>
   <?php

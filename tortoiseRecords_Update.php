@@ -65,8 +65,6 @@ if (isset($_GET['t_ID'])) {
 
           <fieldset>
 
-            <legend>Tortoise Records:</legend>
-
             <input type="hidden" name="t_ID" value="<?php echo $t_ID; ?>">
 
         <div class="form-group">

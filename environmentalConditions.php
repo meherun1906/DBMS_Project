@@ -1,8 +1,7 @@
 <?php 
 
-include "./db.php";
-
-$sql = " SELECT RecordID, EncloserID, Temperature, Humidity, WaterQuality, Record_Date FROM `environmentalconditions`";
+include "./db.php";  
+$sql = " SELECT recordID, enclosureID, temperature, humidity, waterQuality, record_Date  FROM econditions";
 
 $result = $conn->query($sql);
 
@@ -153,35 +152,35 @@ h1 {
 
 <h2>Environmental Conditions</h2>
 <table style="border: 0px solid #ddd;">
-    <td style="border: 0px solid #ddd;"><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search by Enclosure ID" title="Type ID"></td>
+    <td style="border: 0px solid #ddd;"><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search Enclosure ID" title="Type ID"></td>
     <td style="border: 0px solid #ddd;"><a href="environmentalConditions_Create.php" class="button">Add</a></td>
 </table>
 
-<table id="myTable">
+<table id="myTable">    
   <tr class="header">
     <th>Record ID</th>
     <th>Enclosure ID</th>
-      <th>Temperature</th>
-      <th>Humidity</th>
-      <th>Water Quality</th>
-      <th>Record Date</th>
-      <th>Action</th>
+    <th>Temperature</th>
+    <th>Humidity</th>
+    <th>Water Quality</th>
+    <th>Record Date</th>
+    <th>Action</th>
   </tr>
 
   <?php
     if ($result->num_rows > 0) {
-      while ($row = $result->fetch_assoc()) { 
+      while ($row = $result->fetch_assoc()) {   
   ?>
-  <tr>
-    <td><?php echo $row['RecordID']; ?></td>
-    <td><?php echo $row['EncloserID']; ?></td>
-    <td><?php echo $row['Temperature']; ?></td>
-    <td><?php echo $row['Humidity']; ?></td>
-    <td><?php echo $row['WaterQuality']; ?></td>
-    <td><?php echo $row['Record_Date']; ?></td>
+  <tr>        
+    <td><?php echo $row['recordID']; ?></td>
+    <td><?php echo $row['enclosureID']; ?></td>
+    <td><?php echo $row['temperature']; ?></td>
+    <td><?php echo $row['humidity']; ?></td>
+    <td><?php echo $row['waterQuality']; ?></td>
+    <td><?php echo $row['record_Date']; ?></td>
     <td>
-      <a href="environmentalConditions_Update.php?RecordID=<?php echo $row['RecordID']; ?>" class="button">Edit</a>
-      <a href="environmentalConditions_Delete.php?RecordID=<?php echo $row['RecordID']; ?>" class="button" style="background-color: #cf5555;">Delete</a>
+      <a href="environmentalConditions_Update.php?recordID=<?php echo $row['recordID']; ?>" class="button">Edit</a>
+      <a href="environmentalConditions_Delete.php?recordID=<?php echo $row['recordID']; ?>" class="button" style="background-color: #cf5555;">Delete</a>
     </td>
   </tr>
   <?php

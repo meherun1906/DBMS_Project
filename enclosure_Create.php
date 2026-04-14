@@ -1,38 +1,35 @@
-<?php
+<?php 
 include "./db.php";
 
 
+  if (isset($_POST['submit'])){           
 
+    $enclosureID = $_POST['enclosureID'];
 
-  if (isset($_POST['submit'])){
-    $enclosureID = $_POST['EnclosureID'];
+    $e_size = $_POST['e_size'];
 
-    $size = $_POST['Size'];
+    $habitatType = $_POST['habitatType'];
 
-    $habitatType = $_POST['HabitatType'];
+    $currentOccupants = $_POST['currentOccupants'];
 
-    $currentOccupants = $_POST['CurrentOccupants'];
+    $maintenanceSchedule = $_POST['maintenanceSchedule'];
 
-    $maintenanceShedule = $_POST['MaintenanceShedule'];
+    $environmentalParameters = $_POST['environmentalParameters'];  
 
-
-    $environmentalParameters = $_POST['EnvironmentalParameters'];
-
-    $sql = "INSERT INTO `enclosures`(`EnclosureID`, `Size`, `HabitatType`, `CurrentOccupants`, `MaintenanceShedule`, `EnvironmentalParameters`) VALUES('$EnclosureID','$Size','$HabitatType','$CurrentOccupants','$MaintenanceShedule', '$EnvironmentalParameters')";
+    $sql = "INSERT INTO `enclosuredetails`(`enclosureID`, `e_size`, `habitatType`, `currentOccupants`, `maintenanceSchedule`,`environmentalParameters`) VALUES ('$enclosureID','$e_size','$habitatType','$currentOccupants','$maintenanceSchedule', '$environmentalParameters')";
     $result = $conn->query($sql);
-
 
     if ($result == TRUE) {
 
       echo '<div class="alert alert-success" role="alert">New record created successfully!</div>';
       echo "<script>console.log('New record created successfully!');</script>";
-      header( "refresh:2; url=./enclosures.php" );
+      header( "refresh:2; url=./enclosure.php" ); 
 
     }else{
 
       echo "Error:". $sql . "<br>". $conn->error;
 
-    }
+    } 
 
     $conn->close();
    }
@@ -53,37 +50,35 @@ include "./db.php";
 
   <form action="" method="POST">
 
-    <fieldset>                    
-
+    <fieldset>                      
       <div class="form-group">
-        <label for="EnclosuerID">Enclosure ID :</label>
-        <input type="text" class="form-control" name="EnclosuerID" id="EnclosureID">
+        <label for="enclosureID">Enclosure ID :</label>
+        <input type="text" class="form-control" name="enclosureID" id="enclosureID">
       </div>
 
       <div class="form-group">
-        <label for="Size">Size:</label>
-        <input type="text" class="form-control" name="Size" id="Size">
+        <label for="e_size">Size:</label>
+        <input type="text" class="form-control" name="e_size" id="e_size">
       </div>
 
       <div class="form-group">
-        <label for="HabitatType">Habitat Type:</label>
-        <input type="text" class="form-control" name="HabitatType" id="HabitatType">
-      </div>
-
-
-      <div class="form-group">
-        <label for="CurrentOccupants">Current Occupants:</label>
-        <input type="text" class="form-control" name="CurrentOccupants" id="CurrentOccupants">
+        <label for="habitatType">Habitat Type:</label>
+        <input type="text" class="form-control" name="habitatType" id="habitatType">
       </div>
 
       <div class="form-group">
-        <label for="MaintenanceShedule">Maintenance Schedule:</label>
-        <input type="text" class="form-control" name="MaintenanceShedule" id="MaintenanceShedule">
+        <label for="currentOccupants">Current Occupants:</label>
+        <input type="text" class="form-control" name="currentOccupants" id="currentOccupants">
       </div>
 
       <div class="form-group">
-        <label for="EnvironmentalParameters">Environmental Parameters:</label>
-        <input type="text" class="form-control" name="EnvironmentalParameters" id="EnvironmentalParameters">
+        <label for="maintenanceSchedule">Maintenance Schedule:</label>
+        <input type="text" class="form-control" name="maintenanceSchedule" id="maintenanceSchedule">
+      </div>
+
+      <div class="form-group">
+        <label for="environmentalParameters">Environmental Parameters:</label>
+        <input type="text" class="form-control" name="environmentalParameters" id="environmentalParameters">
       </div>
 
 
@@ -93,7 +88,6 @@ include "./db.php";
 
   </form>
 </div>
-
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 

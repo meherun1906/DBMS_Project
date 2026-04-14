@@ -1,23 +1,23 @@
 <?php 
 include "./db.php";
 
-  if (isset($_POST['submit'])){
+  if (isset($_POST['submit'])){     
 
-    $FeedingID = $_POST['FeedingID'];
+    $f_ID = $_POST['f_ID'];
 
     $t_ID = $_POST['t_ID'];
 
-    $FoodType = $_POST['FoodType'];
+    $foodType = $_POST['foodType'];
 
-    $FeedingTime = $_POST['FeedingTime'];
+    $feedingTime = $_POST['feedingTime'];
 
-    $Quantity = $_POST['Quantity'];
+    $quantity = $_POST['quantity'];
 
-    $DietNotes = $_POST['DietNotes'];
+    $dietNotes = $_POST['dietNotes']; 
+    
+    $stock = $_POST['stock']; 
 
-    $Stock = $_POST['Stock'];
-
-    $sql = "INSERT INTO `logfeedingtimes`(`FeedingID`, `t_ID`, `FoodType`, `FeedingTime`, `Quantity`, `DietNotes`, `Stock`) VALUES ('$FeedingID','$t_ID','$FoodType','$FeedingTime','$Quantity', '$DietNotes', '$Stock')";
+    $sql = "INSERT INTO `feedingtimes`(`f_ID`, `t_ID`, `foodType`, `feedingTime`, `quantity`,`dietNotes`, `stock`) VALUES ('$f_ID','$t_ID','$foodType','$feedingTime','$quantity', '$dietNotes','$stock')";
     $result = $conn->query($sql);
 
     if ($result == TRUE) {
@@ -40,21 +40,20 @@ include "./db.php";
 <html>
 
 <head>
-  <title>Log Feeding Times</title>
+  <title>Feeding Times</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
 <body>
 
 <div class="container">
-  <h2>Feeding Times Form</h2>
+  <h2>Log Feeding Times Form</h2>
 
   <form action="" method="POST">
-
-    <fieldset>                     
-<div class="form-group">
-        <label for="FeedingID">Feeding ID :</label>
-        <input type="text" class="form-control" name="FeedingID" id="FeedingID">
+    <fieldset>                   
+      <div class="form-group">
+        <label for="f_ID">Feeding ID :</label>
+        <input type="text" class="form-control" name="f_ID" id="f_ID">
       </div>
 
       <div class="form-group">
@@ -63,28 +62,28 @@ include "./db.php";
       </div>
 
       <div class="form-group">
-        <label for="FoodType">Food Type:</label>
-        <input type="text" class="form-control" name="FoodType" id="FoodType">
+        <label for="foodType">Food Type:</label>
+        <input type="text" class="form-control" name="foodType" id="foodType">
       </div>
 
       <div class="form-group">
-        <label for="FeedingTime">Feeding Time:</label>
-        <input type="time" class="form-control" name="FeedingTime" id="FeedingTime">
+        <label for="feedingTime">Feeding Time:</label>
+        <input type="time" class="form-control" name="feedingTime" id="feedingTime">
       </div>
 
       <div class="form-group">
-        <label for="Quantity">Quantity:</label>
-        <input type="text" class="form-control" name="Quantity" id="Quantity">
+        <label for="quantity">Quantity:</label>
+        <input type="text" class="form-control" name="quantity" id="quantity">
       </div>
 
       <div class="form-group">
-        <label for="DietNotes">Diet Notes:</label>
-        <input type="text" class="form-control" name="DietNotes" id="DietNotes">
+        <label for="dietNotes">Diet Notes:</label>
+        <input type="text" class="form-control" name="dietNotes" id="dietNotes">
       </div>
 
       <div class="form-group">
-        <label for="Stock">Stock:</label>
-        <input type="text" class="form-control" name="Stock" id="Stock">
+        <label for="stock">Stock:</label>
+        <input type="text" class="form-control" name="stock" id="stock">
       </div>
 
 

@@ -1,21 +1,21 @@
 <?php 
 include "./db.php";
 
-  if (isset($_POST['submit'])){ 
+  if (isset($_POST['submit'])){           
 
-    $RecordID = $_POST['RecordID'];
+    $recordID = $_POST['recordID'];
 
-    $EncloserID = $_POST['EncloserID'];
+    $enclosureID = $_POST['enclosureID'];
 
-    $Temperature = $_POST['Temperature'];
+    $temperature = $_POST['temperature'];
 
-    $Humidity = $_POST['Humidity'];
+    $humidity = $_POST['humidity'];
 
-    $WaterQuality = $_POST['WaterQuality'];
+    $waterQuality = $_POST['waterQuality'];
 
-    $Record_Date = $_POST['Record_Date'];  
+    $record_Date = $_POST['record_Date'];  
 
-    $sql = "INSERT INTO `environmentalconditions`(`RecordID`, `EncloserID`, `Temperature`, `Humidity`, `WaterQuality`, `Record_Date`) VALUES ('$t_ID','$species','$age','$gender','$healthStatus', '$history')";
+    $sql = "INSERT INTO `econditions`(`recordID`, `enclosureID`, `temperature`, `humidity`, `waterQuality`,`record_Date`) VALUES ('$recordID','$enclosureID','$temperature','$humidity','$waterQuality', '$record_Date')";
     $result = $conn->query($sql);
 
     if ($result == TRUE) {
@@ -48,36 +48,35 @@ include "./db.php";
   <h2>Environmental Conditions Form</h2>
 
   <form action="" method="POST">
-
     <fieldset>                      
-                                                                    
-        <label for="RecordID">Record ID :</label>
-        <input type="text" class="form-control" name="RecordID" id="RecordID">
+      <div class="form-group">
+        <label for="recordID">Record ID :</label>
+        <input type="text" class="form-control" name="recordID" id="recordID">
       </div>
 
       <div class="form-group">
-        <label for="EncloserID">Encloser ID:</label>
-        <input type="text" class="form-control" name="EncloserID" id="EncloserID">
+        <label for="enclosureID">Enclosure ID:</label>
+        <input type="text" class="form-control" name="enclosureID" id="enclosureID">
       </div>
 
       <div class="form-group">
-        <label for="Temperature">Temperature:</label>
-        <input type="text" class="form-control" name="Temperature" id="Temperature">
+        <label for="temperature">Temperature:</label>
+        <input type="text" class="form-control" name="temperature" id="temperature">
       </div>
 
       <div class="form-group">
-        <label for="Humidity">Humidity:</label>
-        <input type="text" class="form-control" name="Humidity" id="Humidity">
+        <label for="humidity">Humidity:</label>
+        <input type="text" class="form-control" name="humidity" id="humidity">
       </div>
 
       <div class="form-group">
-        <label for="WaterQuality">Water Quality:</label>
-        <input type="text" class="form-control" name="WaterQuality" id="WaterQuality">
+        <label for="waterQuality">Water Quality:</label>
+        <input type="text" class="form-control" name="waterQuality" id="waterQuality">
       </div>
 
       <div class="form-group">
-        <label for="Record_Date">Record Date:</label>
-        <input type="date" class="form-control" name="Record_Date" id="Record_Date">
+        <label for="record_Date">Record Date:</label>
+        <input type="date" class="form-control" name="record_Date" id="record_Date">
       </div>
 
 

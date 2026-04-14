@@ -1,22 +1,9 @@
-<?php
-
-
-
+<?php 
 
 include "./db.php";
-
-
-
-
-$sql = " SELECT EnclosureID, Size, HabitatType, CurrentOccupants, MaintenanceShedule, EnvironmentalParameters FROM enclosures";
-
-
-
+$sql = " SELECT enclosureID, e_size, habitatType, currentOccupants, maintenanceSchedule, environmentalParameters  FROM enclosuredetails";
 
 $result = $conn->query($sql);
-
-
-
 
 ?>
 <!DOCTYPE html>
@@ -25,16 +12,10 @@ $result = $conn->query($sql);
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 
-
-
-
 body {
   font-family: Arial;
   margin: 0;
 }
-
-
-
 
 ul {
   list-style-type: none;
@@ -44,15 +25,9 @@ ul {
   background-color: #cf5555;
 }
 
-
-
-
 ul li {
   float: left;
 }
-
-
-
 
 ul li a {
   display: block;
@@ -61,40 +36,25 @@ ul li a {
   text-decoration: none;
 }
 
-
-
-
 ul li a:hover {
   background-color: #a94444;
 }
-
-
-
 
 .container {
   width: 80%;
   margin: 30px auto;
 }
 
-
-
-
 .top-bar {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-end; 
   margin-bottom: 10px;
 }
-
-
-
 
 table {
   width: 100%;
   border-collapse: collapse;
 }
-
-
-
 
 th, td {
   border: 1px solid #ddd;
@@ -102,30 +62,18 @@ th, td {
   text-align: center;
 }
 
-
-
-
 th {
   background-color: #cf5555;
   color: white;
 }
 
-
-
-
 tr:hover {
   background-color: #f2f2f2;
 }
 
-
-
-
 h1 {
   text-align: center;
 }
-
-
-
 
 .button {
   background-color: #cf5555;
@@ -137,9 +85,6 @@ h1 {
   cursor: pointer;
   border-radius: 5px;
 }
-
-
-
 
 .btn {
   background-color: #cf5555;
@@ -154,9 +99,6 @@ h1 {
 * {
   box-sizing: border-box;
 }
-
-
-
 
 #myInput {
   background-image: url('/css/searchicon.png');
@@ -175,44 +117,27 @@ h1 {
   font-size: 18px;
 }
 
-
-
-
 #myTable th, #myTable td {
   text-align: left;
   padding: 12px;
 }
 
-
-
-
 #myTable tr {
   border-bottom: 1px solid #ddd;
 }
-
-
-
 
 #myTable tr.header, #myTable tr:hover {
   background-color: #f1f1f1;
 }
 
-
-
-
 </style>
 </head>
-
-
-
 
 <body>
 <table>
     <td style="border: 0px solid #ddd;"><img src="logo.png" width="180" height="123"></td>
     <td style="border: 0px solid #ddd;"><h1>Not So Slow & Steady</h1></td>
 </table>
-
-
 
 <ul>
   <li><a href="home.php">Home</a></li>
@@ -225,46 +150,37 @@ h1 {
   <li><a href="assignTask.php">Assign Task</a></li>
 </ul>
 
-
-
-
-<h2>Enclosures Details</h2>
+<h2>Enclosure Details</h2>
 <table style="border: 0px solid #ddd;">
     <td style="border: 0px solid #ddd;"><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search ID" title="Type ID"></td>
     <td style="border: 0px solid #ddd;"><a href="enclosure_Create.php" class="button">Add</a></td>
 </table>
 
-
-
-
-<table id="myTable">
+<table id="myTable">    
   <tr class="header">
     <th>Enclosure ID</th>
     <th>Size</th>
     <th>Habitat Type</th>
     <th>Current Occupants</th>
-    <th>Maintenance Shedule</th>
+    <th>Maintenance Schedule</th>
     <th>Environmental Parameters</th>
     <th>Action</th>
   </tr>
 
-
-
-
   <?php
     if ($result->num_rows > 0) {
-      while ($row = $result->fetch_assoc()) {
+      while ($row = $result->fetch_assoc()) {   
   ?>
   <tr>
-    <td><?php echo $row['EnclosureID']; ?></td>
-    <td><?php echo $row['Size']; ?></td>
-    <td><?php echo $row['HabitatType']; ?></td>
-    <td><?php echo $row['CurrentOccupants']; ?></td>
-    <td><?php echo $row['MaintenanceShedule']; ?></td>
-    <td><?php echo $row['EnvironmentalParameters']; ?></td>
+    <td><?php echo $row['enclosureID']; ?></td>
+    <td><?php echo $row['e_size']; ?></td>
+    <td><?php echo $row['habitatType']; ?></td>
+    <td><?php echo $row['currentOccupants']; ?></td>
+    <td><?php echo $row['maintenanceSchedule']; ?></td>
+    <td><?php echo $row['environmentalParameters']; ?></td>
     <td>
-      <a href="enclosures_Update.php?EnclosureID=<?php echo $row['EnclosureID']; ?>" class="button">Edit</a>
-      <a href="enclosures_Delete.php?EnclosureID=<?php echo $row['EnclosureID']; ?>" class="button" style="background-color: #cf5555;">Delete</a>
+      <a href="enclosures_Update.php?enclosureID=<?php echo $row['enclosureID']; ?>" class="button">Edit</a>
+      <a href="enclosures_Delete.php?enclosureID=<?php echo $row['enclosureID']; ?>" class="button" style="background-color: #cf5555;">Delete</a>
     </td>
   </tr>
   <?php
@@ -289,13 +205,10 @@ function myFunction() {
       } else {
         tr[i].style.display = "none";
       }
-    }      
+    }       
   }
 }
 </script>
-
-
-
 
 </body>
 </html>
